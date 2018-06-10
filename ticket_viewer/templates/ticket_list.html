@@ -13,5 +13,12 @@
 				</a>
 			{% endfor %}
 		</ul>
+		<br><br>
+		<form action="{{ url_for('main') }}">
+    		<input type="submit" value="Next" />
+		</form>
+		<form action="{{ url_for('main') }}">
+    		<input type="submit" value="Back" />
+		</form>
 	</body>
 </html>
