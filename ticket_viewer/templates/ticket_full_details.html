@@ -1,7 +1,57 @@
 <!DOCTYPE html>
 <html>
-	<head>Ticket Info</head>
+	<head>
+		<title>Ticket Info</title>
+		<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+	</head>
 	<body>
-		<h1> jrkhewrhekwhr </h1>
+		Created: {{ ticket_info['created_at'] }}
+		<br>
+		Updated last: {{ ticket_info['updated_at'] }}
+		<br><br>
+		<div class=ticket_info_table>
+			<table >
+				<tr>
+					<th>Ticket ID</th>
+					<td>{{ ticket_info['id'] }}</td>
+				</tr>
+				<tr>
+					<th>Type</th>
+					<td>{{ ticket_info['type'] }}</td>
+				</tr>
+				<tr>
+					<th>Priority</th>
+					<td>{{ ticket_info['priority'] }}</td>
+				</tr>
+				<tr>
+					<th>Status</th>
+					<td>{{ ticket_info['status'] }}</td>
+				</tr>
+				<tr>
+					<th>Subject</th>
+					<td>{{ ticket_info['subject'] }}</td>
+				</tr>
+				<tr>
+					<th>Description</th>
+					<td>{{ ticket_info['description'] }}</td>
+				</tr>
+				<tr>
+					<th>Submitted by</th>
+					<td>{{ ticket_info['submitter_id'] }}</td>
+				</tr>
+				<tr>
+					<th>Assigned to</th>
+					<td>{{ ticket_info['assignee_id'] }}</td>
+				</tr>
+				<tr>
+					<th>Collaborators</th>
+					<td>{{ ticket_info['collaborators'] }}</td>
+				</tr>
+				<tr>
+					<th>Tags</th>
+					<td>{{ ticket_info['tags'] }}</td>
+				</tr>
+			</table>
+		</div>
 	</body>
 </html>

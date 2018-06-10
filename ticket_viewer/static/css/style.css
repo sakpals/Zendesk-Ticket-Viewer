@@ -1,3 +1,12 @@
 div.ticket {
 	text-align: left;
 }
+
+div.ticket_info_table {
+	width: 100%;
+	border-spacing: 5px;
+	border: 1px solid black;
+	text-align: left;
+	padding: 10px;
+	border-spacing: 10px;
+}
