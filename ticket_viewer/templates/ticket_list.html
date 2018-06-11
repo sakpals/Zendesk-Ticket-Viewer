@@ -14,11 +14,15 @@
 			{% endfor %}
 		</ul>
 		<br><br>
-		<form action="{{ url_for('main') }}">
+		{% if next_pg %}
+		<form action="{{ url_for('ticket_list_page', page_num=page_num+1) }}">
     		<input type="submit" value="Next" />
 		</form>
-		<form action="{{ url_for('main') }}">
+		{% endif %}
+		{% if prev_pg %}
+		<form action="{{ url_for('ticket_list_page', page_num=page_num-1) }}">
     		<input type="submit" value="Back" />
 		</form>
+		{% endif %}
 	</body>
 </html>
