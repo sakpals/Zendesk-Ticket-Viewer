@@ -10,12 +10,21 @@ curr_page_num = 1
 def get_request(url):
 	try:
 		response = requests.get(url, auth=(user, token))
-		return response
+		return response, False
 	except requests.exceptions.ConnectionError: 
-		return render_template('internet_disconnect.html')
+		return render_template('internet_disconnect.html'), True
+	except requests.exceptions.Timeout:
+		return render_template('timeout_error.html'), True
+	except requests.exceptions.SSLError:
+		return render_template('SSL_error.html'), True
+	except requests.exceptions.HTTPError:
+		return render_template('HTTP_error.html'), True
+
 
 def handle_error_response(code):
-	if code == 404: # trying to get ticket that doesn't exist
+	if code == 401:
+		return render_template('authentication_error.html')
+	elif code == 404: # trying to get ticket that doesn't exist
 		return render_template('phantom_ticket_error.html')
 	elif code == 409:
 		return render_template('merge_conflict_error.html')
@@ -36,7 +45,9 @@ def handle_error_response(code):
 
 @app.route('/')
 def ticket_list():
-	response = get_request(url+'/tickets/?page=1&per_page=25')
+	response, rendered = get_request(url+'/tickets/?page=1&per_page=25')
+	if rendered:
+		return response
 	if response.status_code != 200:
 			return handle_error_response(response.status_code)
 	
@@ -52,7 +63,9 @@ def ticket_list():
 @app.route('/page/<page_num>')
 def ticket_list_page(page_num):
 	curr_page_num = int(page_num)
-	response = get_request(url+'/tickets/?page='+str(curr_page_num)+'&per_page=25')
+	response, rendered = get_request(url+'/tickets/?page='+str(curr_page_num)+'&per_page=25')
+	if rendered:
+		return response
 	if response.status_code != 200:
 			return handle_error_response(response.status_code)
 	data = response.json()
@@ -66,7 +79,9 @@ def ticket_list_page(page_num):
 
 @app.route('/ticket/<ticket_id>')
 def single_ticket(ticket_id):
-	response = get_request(url+'/tickets/'+str(ticket_id)+'.json')
+	response, rendered = get_request(url+'/tickets/'+str(ticket_id)+'.json')
+	if rendered:
+		return response
 	if response.status_code != 200:
 		return handle_error_response(response.status_code)
 
