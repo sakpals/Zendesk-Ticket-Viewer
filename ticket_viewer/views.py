@@ -1,11 +1,10 @@
 from . import app
 from flask import render_template, request
-import requests, os, sys
+import requests, os, sys, re
 
 url = 'https://katsucat1.zendesk.com/api/v2'
 user = 'sampadasakpal@hotmail.com'+'/token'
 token = 'rmgm9bSehKgL09Eh2DJC98PNFZrgjOYqPQwzX0Zf'
-curr_page_num = 1
 
 def get_request(url):
 	try:
@@ -57,13 +56,21 @@ def ticket_list():
 	if len(data['tickets']) == 0:
 		return render_template('no_tickets_error.html')
 
+	# getting the current page
+	if data['next_page']:
+		curr_page = int(re.search('page=(\d+)', data['next_page']).group(1)) - 1
+	elif data['previous_page']:
+		curr_page = int(re.search('page=(\d+)', data['previous_page']).group(1)) + 1
+	else:
+		curr_page = 1
+
 	return render_template('ticket_list.html', ticket_list=data['tickets'],
-		next_pg=data['next_page'], prev_pg=data['previous_page'], page_num=curr_page_num)
+		next_pg=data['next_page'], prev_pg=data['previous_page'], page_num=curr_page)
 
 @app.route('/page/<page_num>')
 def ticket_list_page(page_num):
-	curr_page_num = int(page_num)
-	response, rendered = get_request(url+'/tickets/?page='+str(curr_page_num)+'&per_page=25')
+	curr_page = int(page_num)
+	response, rendered = get_request(url+'/tickets/?page='+str(curr_page)+'&per_page=25')
 	if rendered:
 		return response
 	if response.status_code != 200:
@@ -75,10 +82,10 @@ def ticket_list_page(page_num):
 		return render_template('no_tickets_error.html')
 
 	return render_template('ticket_list.html', ticket_list=data['tickets'],
-		next_pg=data['next_page'], prev_pg=data['previous_page'], page_num=curr_page_num)
+		next_pg=data['next_page'], prev_pg=data['previous_page'], page_num=curr_page)
 
-@app.route('/ticket/<ticket_id>')
-def single_ticket(ticket_id):
+@app.route('/page=<page_num>?ticket=<ticket_id>')
+def single_ticket(page_num, ticket_id):
 	response, rendered = get_request(url+'/tickets/'+str(ticket_id)+'.json')
 	if rendered:
 		return response
@@ -86,5 +93,5 @@ def single_ticket(ticket_id):
 		return handle_error_response(response.status_code)
 
 	data = response.json()
-	return render_template('ticket_full_details.html', ticket_info=data['ticket'], page_num=curr_page_num)
+	return render_template('ticket_full_details.html', ticket_info=data['ticket'], page_num=page_num)
 
