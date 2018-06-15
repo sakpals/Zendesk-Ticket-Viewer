@@ -6,9 +6,11 @@
 	</head>
 	<body>
 		<h1>Ticket list</h1>
+		<p> {{ ticket_list|length }} tickets:</p>
+
 		<ul>
 			{% for ticket in ticket_list %}
-				<a href="{{ url_for('single_ticket', ticket_id=ticket['id']) }}">
+				<a href="{{ url_for('single_ticket', page_num=page_num, ticket_id=ticket['id']) }}">
 					<div class=ticket>{{ ticket['subject'] }}</div>
 				</a>
 			{% endfor %}

@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title> ERROR </title>
+	</head>
+	<body>
+		<h3>Woops! There are no more tickets to display!
+		</h3>
+		<form action="{{ url_for('ticket_list_page', page_num=1) }}">
+    		<input type="submit" value="Back to start of ticket list" />
+		</form>
+	</body>
+</html>
