@@ -1,0 +1,6 @@
+{
+  "conftest.py::test_ticket_list": true,
+  "conftest.py::test_ticket_list_response": true,
+  "test_app.py::TestApp::()::test_ticket_list": true,
+  "test_app.py::test_server_is_up_and_running": true
+}

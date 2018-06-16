@@ -1,0 +1,5 @@
+[
+  "test_app.py::test_server_is_running",
+  "test_app.py::test_ticket_list",
+  "test_app.py::test_ticket_list_page"
+]
