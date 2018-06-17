@@ -90,3 +90,40 @@ Navigate to the URL specified:
  ```
  http://127.0.0.1:5000/
 ```
+
+
+## Testing
+Testing is automated using pytest-flask. 
+
+
+### Installing
+Requirements for testing should already be installed by requirements.txt. But if not:
+```
+pip3 install pytest-flask
+```
+
+
+### Running test suite
+To run without any run requirements:
+```
+py.test
+```
+
+
+or
+```
+pytest test_app.py
+```
+
+
+To run with verbosity:
+```
+pytest test_app.py -v 
+```
+
+
+To run and display any print statments to stdout:
+```
+pytest test_app.py -s
+```
+
