@@ -94,6 +94,7 @@ Navigate to the URL specified:
 
 ## Testing
 Testing is automated using pytest-flask. 
+NOTE: ensure that the server is running in a separate terminal/command prompt window before running tests
 
 
 ### Installing
