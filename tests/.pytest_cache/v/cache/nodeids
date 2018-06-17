@@ -1,0 +1,12 @@
+[
+  "test_app.py::test_server_is_running",
+  "test_app.py::test_ticket_list",
+  "test_app.py::test_ticket_list_page",
+  "test_app.py::test_single_ticket_valid",
+  "test_app.py::test_credentials",
+  "test_app.py::test_get_page2_tickets",
+  "test_app.py::test_get_page100_tickets",
+  "test_app.py::test_get_ticket_10",
+  "test_app.py::test_get_ticket_100",
+  "test_app.py::test_get_ticket_200"
+]
