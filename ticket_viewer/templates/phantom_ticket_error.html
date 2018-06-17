@@ -2,10 +2,11 @@
 <html>
 	<head>
 		<title> ERROR </title>
+		<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 	</head>
 	<body>
-		<h3>Woops! The ticket you're trying to get is unavailable/doesn't even exist!
-		</h3>
-
+		<h3>The ticket you're trying to get doesn't exist.</h3>
+		<h3 class='phantom_ticket_msg'> Or does it.....</h3>
+		<p> ^^^^^^ highlight</p>
 	</body>
 </html>

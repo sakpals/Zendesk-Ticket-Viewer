@@ -1,3 +1,15 @@
 div.ticket {
 	text-align: left;
 }
+
+form.navigation_btn {
+	display: inline-block;
+	font-size: 20px;
+}
+
+form.back_to_list_btn {
+	font-size: 20px;
+}
+h3.phantom_ticket_msg {
+	color: white;
+}

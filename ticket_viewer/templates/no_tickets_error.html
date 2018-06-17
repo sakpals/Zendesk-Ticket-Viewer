@@ -2,11 +2,13 @@
 <html>
 	<head>
 		<title> ERROR </title>
+		<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 	</head>
 	<body>
-		<h3>Woops! There are no more tickets to display!
+		<h3>Woops! There are no more tickets to display :(
 		</h3>
-		<form action="{{ url_for('ticket_list_page', page_num=1) }}">
+		<a href="http://www.hilariousgifs.com/disappointed-kitty/" target="_blank"><img src="http://i.imgur.com/RobmaMk.gif" border="0" alt="Image and video hosting by HilariousGIFs.com" /></a>
+		<form class='back_to_list_btn' action="{{ url_for('ticket_list_page', page_num=1) }}">
     		<input type="submit" value="Back to start of ticket list" />
 		</form>
 	</body>

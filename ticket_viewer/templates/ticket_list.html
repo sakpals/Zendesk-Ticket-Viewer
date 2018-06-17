@@ -15,14 +15,14 @@
 				</a>
 			{% endfor %}
 		</ul>
-		<br><br>
+		<br>
 		{% if next_pg %}
-		<form action="{{ url_for('ticket_list_page', page_num=page_num+1) }}">
+		<form class='navigation_btn' action="{{ url_for('ticket_list_page', page_num=page_num+1) }}">
     		<input type="submit" value="Next" />
 		</form>
 		{% endif %}
 		{% if prev_pg %}
-		<form action="{{ url_for('ticket_list_page', page_num=page_num-1) }}">
+		<form class='navigation_btn' action="{{ url_for('ticket_list_page', page_num=page_num-1) }}">
     		<input type="submit" value="Back" />
 		</form>
 		{% endif %}
