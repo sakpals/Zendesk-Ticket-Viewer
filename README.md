@@ -94,7 +94,9 @@ Navigate to the URL specified:
 
 ## Testing
 Testing is automated using pytest-flask. 
-NOTE: ensure that the server is running in a separate terminal/command prompt window before running tests
+
+
+NOTE: ensure that you have activated virtual environment + the server is running in a separate terminal/command prompt window before running tests
 
 
 ### Installing
