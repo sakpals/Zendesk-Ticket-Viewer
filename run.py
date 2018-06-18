@@ -1,4 +1,4 @@
-DEBUG = True #temporary location
+DEBUG = False 
 
 from ticket_viewer import app
 
